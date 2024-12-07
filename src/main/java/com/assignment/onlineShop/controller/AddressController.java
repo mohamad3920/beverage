@@ -34,7 +34,7 @@ public class AddressController {
         return addressService.save(address);
     }
 
-    @GetMapping
+    @GetMapping("/getById")
     public Address getAddressById(@RequestParam("id") Long id) {
         return addressService.findById(id);
     }

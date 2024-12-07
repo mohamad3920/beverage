@@ -34,7 +34,7 @@ public class BottleController {
         return bottleService.save(bottle);
     }
 
-    @GetMapping
+    @GetMapping("/getById")
     public Bottle getBottleById(@RequestParam("id") Long id) {
         return bottleService.findById(id);
     }
