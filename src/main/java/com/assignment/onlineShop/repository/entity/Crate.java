@@ -1,4 +1,4 @@
-package com.assignment.onlineShop.model.entity;
+package com.assignment.onlineShop.repository.entity;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -8,6 +8,7 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -33,8 +34,11 @@ public class Crate {
     private String name;
     @URL
     private String cratePic;
+    @Positive
     private Integer noOfBottles;
+    @Positive
     private Double price;
+    @Positive
     private Integer cratesInStock;
     @OneToMany
     private List<Bottle> bottles;
