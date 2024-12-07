@@ -1,6 +1,6 @@
 package com.assignment.onlineShop.controller;
 
-import com.assignment.onlineShop.repository.entity.Order;
+import com.assignment.onlineShop.repository.entity.ShopOrder;
 import com.assignment.onlineShop.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -24,23 +24,23 @@ public class OrderController {
     }
 
     @GetMapping
-    public List<Order> getAllOrders() {
+    public List<ShopOrder> getAllOrders() {
         return orderService.findAll();
     }
 
     @GetMapping("/getById")
-    public Order getOrderById(Long id) {
+    public ShopOrder getOrderById(Long id) {
         return orderService.findById(id);
     }
 
     @PostMapping
-    public Order createOrder(@RequestBody Order order) {
-        return orderService.save(order);
+    public ShopOrder createOrder(@RequestBody ShopOrder shopOrder) {
+        return orderService.save(shopOrder);
     }
 
     @PutMapping
-    public Order updateOrder(@RequestBody Order order) {
-        return orderService.save(order);
+    public ShopOrder updateOrder(@RequestBody ShopOrder shopOrder) {
+        return orderService.save(shopOrder);
     }
 
     @DeleteMapping

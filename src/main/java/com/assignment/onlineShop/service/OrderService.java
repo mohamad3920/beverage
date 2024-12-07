@@ -1,7 +1,7 @@
 package com.assignment.onlineShop.service;
 
 import com.assignment.onlineShop.repository.OrderRepository;
-import com.assignment.onlineShop.repository.entity.Order;
+import com.assignment.onlineShop.repository.entity.ShopOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,15 +16,15 @@ public class OrderService {
         this.orderRepository = orderRepository;
     }
 
-    public Order save(Order order) {
-        return orderRepository.save(order);
+    public ShopOrder save(ShopOrder shopOrder) {
+        return orderRepository.save(shopOrder);
     }
 
-    public Order findById(Long id) {
+    public ShopOrder findById(Long id) {
         return orderRepository.findById(id).orElse(null);
     }
 
-    public List<Order> findAll() {
+    public List<ShopOrder> findAll() {
         return orderRepository.findAll();
     }
 

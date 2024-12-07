@@ -4,17 +4,14 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Positive;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.validator.constraints.URL;
 
 import java.util.List;
 
@@ -29,17 +26,12 @@ public class Crate {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotNull
-    @NotEmpty
     private String name;
-    @URL
     private String cratePic;
-    @Positive
     private Integer noOfBottles;
-    @Positive
     private Double price;
-    @Positive
     private Integer cratesInStock;
     @OneToMany
+    @JoinColumn(name = "crate_id")
     private List<Bottle> bottles;
 }
