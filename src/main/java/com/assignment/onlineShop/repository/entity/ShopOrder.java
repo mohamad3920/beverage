@@ -27,8 +27,6 @@ public class ShopOrder {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Double price;
-//    @ManyToOne
-//    private User user;
     @OneToMany
     @JoinColumn(name = "order_id")
     private List<OrderItem> orderItems;

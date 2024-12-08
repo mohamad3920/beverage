@@ -15,12 +15,13 @@ CREATE TABLE IF NOT EXISTS ADDRESS (
     city VARCHAR(255) NOT NULL,
     street VARCHAR(255) NOT NULL,
     number VARCHAR(50),
-    POSTAL_CODE VARCHAR(20),
-    FOREIGN KEY (user_id) REFERENCES SHOP_USER (id)
+    postal_code VARCHAR(20),
+    user_id BIGINT,
+    FOREIGN KEY (user_id) REFERENCES SHOP_USER(id)
     );
 
 -- Create Addresses
-INSERT INTO address (id, city, street, number, POSTAL_CODE, user_id)
+INSERT INTO address (id, city, street, number, postal_code, user_id)
 VALUES (1, 'CityA', 'Street1', '101', '11111', '1'),
        (2, 'CityB', 'Street2', '102', '22222', '1'),
        (3, 'CityC', 'Street3', '103', '33333', '1'),
@@ -56,13 +57,13 @@ VALUES (1, 'Item 1', 10.0, 1),
 CREATE TABLE IF NOT EXISTS BOTTLE (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
-    bottlePic VARCHAR(255),
+    bottle_pic VARCHAR(255),
     volume DOUBLE NOT NULL,
-    isAlcoholic BOOLEAN,
-    volumePercent DOUBLE,
+    is_alcoholic BOOLEAN,
+    volume_percent DOUBLE,
     price DOUBLE NOT NULL,
     supplier VARCHAR(255),
-    inStock INT NOT NULL
+    in_stock INT NOT NULL
     );
 
 -- Bottle Table
@@ -81,10 +82,10 @@ VALUES (1, 'Beer', 'beer.jpg', 0.5, true, 5.0, 3.5, 'Local Brewery', 50),
 CREATE TABLE IF NOT EXISTS CRATE (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
-    cratePic VARCHAR(255),
-    noOfBottles INT NOT NULL,
+    crate_pic VARCHAR(255),
+    no_of_bottles INT NOT NULL,
     price DOUBLE NOT NULL,
-    cratesInStock INT NOT NULL
+    crates_in_stock INT NOT NULL
     );
 
 -- Crate Table
