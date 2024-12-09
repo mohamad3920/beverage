@@ -54,31 +54,6 @@ VALUES (1, 'Item 1', 10.0, 1),
        (3, 'Item 3', 15.0, 2),
        (4, 'Item 4', 25.0, 2);
 
-CREATE TABLE IF NOT EXISTS BOTTLE (
-    id BIGINT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(255) NOT NULL,
-    bottle_pic VARCHAR(255),
-    volume DOUBLE NOT NULL,
-    is_alcoholic BOOLEAN,
-    volume_percent DOUBLE,
-    price DOUBLE NOT NULL,
-    supplier VARCHAR(255),
-    in_stock INT NOT NULL
-    );
-
--- Bottle Table
-INSERT INTO bottle (id, name, bottle_pic, volume, is_alcoholic, volume_percent, price, supplier, in_stock)
-VALUES (1, 'Beer', 'beer.jpg', 0.5, true, 5.0, 3.5, 'Local Brewery', 50),
-       (2, 'Water', 'water.jpg', 1.0, false, 0.0, 1.0, 'Spring Co.', 200),
-       (3, 'Wine', 'wine.jpg', 0.75, true, 12.5, 15.0, 'Vineyard', 30),
-       (4, 'Whiskey', 'whiskey.jpg', 0.7, true, 40.0, 40.0, 'Distillery', 15),
-       (5, 'Soda', 'soda.jpg', 0.33, false, 0.0, 1.5, 'Soda Co.', 100),
-       (6, 'Juice', 'juice.jpg', 1.0, false, 0.0, 3.0, 'Orchard Co.', 75),
-       (7, 'Champagne', 'champagne.jpg', 0.75, true, 11.5, 50.0, 'Winery', 10),
-       (8, 'Tequila', 'tequila.jpg', 0.7, true, 38.0, 25.0, 'Distillery', 20),
-       (9, 'Cider', 'cider.jpg', 0.5, true, 4.5, 3.0, 'Cider Co.', 60),
-       (10, 'Milk', 'milk.jpg', 1.0, false, 0.0, 1.2, 'Dairy Co.', 120);
-
 CREATE TABLE IF NOT EXISTS CRATE (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
@@ -100,3 +75,30 @@ VALUES (1, 'Beer Crate', 'beer_crate.jpg', 24, 75.0, 20),
        (8, 'Cider Crate', 'cider_crate.jpg', 12, 35.0, 15),
        (9, 'Champagne Crate', 'champagne_crate.jpg', 6, 300.0, 2),
        (10,'Tequila Crate', 'tequila_crate.jpg', 6, 150.0, 8);
+
+CREATE TABLE IF NOT EXISTS BOTTLE (
+                                      id BIGINT AUTO_INCREMENT PRIMARY KEY,
+                                      name VARCHAR(255) NOT NULL,
+    bottle_pic VARCHAR(255),
+    volume DOUBLE NOT NULL,
+    is_alcoholic BOOLEAN,
+    volume_percent DOUBLE,
+    price DOUBLE NOT NULL,
+    supplier VARCHAR(255),
+    in_stock INT NOT NULL,
+    crate_id BIGINT,
+    FOREIGN KEY (crate_id) REFERENCES CRATE(id)
+    );
+
+-- Bottle Table
+INSERT INTO bottle (id, name, bottle_pic, volume, is_alcoholic, volume_percent, price, supplier, in_stock, crate_id)
+VALUES (1, 'Beer', 'beer.jpg', 0.5, true, 5.0, 3.5, 'Local Brewery', 50, 1),
+       (2, 'Water', 'water.jpg', 1.0, false, 0.0, 1.0, 'Spring Co.', 200, 2),
+       (3, 'Wine', 'wine.jpg', 0.75, true, 12.5, 15.0, 'Vineyard', 30, 3),
+       (4, 'Whiskey', 'whiskey.jpg', 0.7, true, 40.0, 40.0, 'Distillery', 15, 7),
+       (5, 'Soda', 'soda.jpg', 0.33, false, 0.0, 1.5, 'Soda Co.', 100, 4),
+       (6, 'Juice', 'juice.jpg', 1.0, false, 0.0, 3.0, 'Orchard Co.', 75, 5),
+       (7, 'Champagne', 'champagne.jpg', 0.75, true, 11.5, 50.0, 'Winery', 10, 9),
+       (8, 'Tequila', 'tequila.jpg', 0.7, true, 38.0, 25.0, 'Distillery', 20, 10),
+       (9, 'Cider', 'cider.jpg', 0.5, true, 4.5, 3.0, 'Cider Co.', 60, 8),
+       (10, 'Milk', 'milk.jpg', 1.0, false, 0.0, 1.2, 'Dairy Co.', 120, 6);

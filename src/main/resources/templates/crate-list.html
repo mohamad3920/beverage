@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Crate List</title>
+</head>
+<body>
+<h1>Crates</h1>
+<table>
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Price</th>
+    <th>Bottles</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="crate : ${crates}">
+    <td th:text="${crate.id}"></td>
+    <td th:text="${crate.name}"></td>
+    <td th:text="${crate.price}"></td>
+    <td th:text="${crate.noOfBottles}"></td>
+    <td>
+      <a th:href="@{/crates/{id}(id=${crate.id})}">View Details</a>
+    </td>
+  </tr>
+  </tbody>
+</table>
+</body>
+</html>

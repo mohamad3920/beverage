@@ -1,6 +1,7 @@
 package com.assignment.onlineShop.repository.entity;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -31,7 +32,7 @@ public class Crate {
     private Integer noOfBottles;
     private Double price;
     private Integer cratesInStock;
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER)
     @JoinColumn(name = "crate_id")
     private List<Bottle> bottles;
 }

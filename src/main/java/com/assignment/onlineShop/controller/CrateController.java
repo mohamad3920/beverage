@@ -3,19 +3,19 @@ package com.assignment.onlineShop.controller;
 import com.assignment.onlineShop.repository.entity.Crate;
 import com.assignment.onlineShop.service.CrateService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
-
-@RestController
-@RequestMapping("/crate")
+@Controller
+@RequestMapping("/crates")
 public class CrateController {
     private final CrateService crateService;
 
@@ -25,13 +25,15 @@ public class CrateController {
     }
 
     @GetMapping
-    public List<Crate> getAllCrates() {
-        return crateService.getAllCrates();
+    public String getAllCrates(Model model) {
+        model.addAttribute("crates", crateService.getAllCrates());
+        return "crate-list";
     }
 
-    @GetMapping("/getById")
-    public Crate getCrateById(@RequestParam Long id) {
-        return crateService.getCrateById(id);
+    @GetMapping("/{id}")
+    public String viewCrate(@PathVariable Long id, Model model) {
+        model.addAttribute("crate", crateService.getCrateById(id));
+        return "crate-details";
     }
 
     @PostMapping

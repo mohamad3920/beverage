@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Home</title>
+</head>
+<body>
+<h1>Available Beverages</h1>
+<h2>Bottles</h2>
+<ul>
+  <li th:each="bottle : ${bottles}">
+    <span th:text="${bottle.name}">Bottle Name</span> -
+    <span th:text="${bottle.price}">Price</span>
+    <form th:action="@{/addBottle/{id}(id=${bottle.id})}" method="post">
+      <button type="submit">Add to Basket</button>
+    </form>
+  </li>
+</ul>
+<h2>Crates</h2>
+<ul>
+  <li th:each="crate : ${crates}">
+    <span th:text="${crate.name}">Crate Name</span> -
+    <span th:text="${crate.price}">Price</span>
+    <form th:action="@{/addCrate/{id}(id=${crate.id})}" method="post">
+      <button type="submit">Add to Basket</button>
+    </form>
+  </li>
+</ul>
+<a href="/basket">View Basket</a>
+</body>
+</html>

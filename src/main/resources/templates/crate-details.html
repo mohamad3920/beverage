@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Crate Details</title>
+</head>
+<body>
+<h1 th:text="${crate.name}">Crate Name</h1>
+<p><strong>Price:</strong> <span th:text="${crate.price}"></span></p>
+<p><strong>No. of Bottles:</strong> <span th:text="${crate.noOfBottles}"></span></p>
+<p><strong>In Stock:</strong> <span th:text="${crate.cratesInStock}"></span></p>
+
+<h2>Bottles in this Crate</h2>
+<ul>
+  <li th:each="bottle : ${crate.bottles}" th:text="${bottle.name}"></li>
+</ul>
+</body>
+</html>
