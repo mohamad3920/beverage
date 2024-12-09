@@ -1,6 +1,7 @@
 package com.assignment.onlineShop.repository.entity;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -27,7 +28,7 @@ public class ShopOrder {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Double price;
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER)
     @JoinColumn(name = "order_id")
     private List<OrderItem> orderItems;
 }

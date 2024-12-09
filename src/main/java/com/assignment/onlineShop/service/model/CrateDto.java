@@ -27,4 +27,6 @@ public class CrateDto {
     @Positive
     private Integer cratesInStock;
     private List<BottleDto> bottles;
+    @Positive
+    private Integer quantity;
 }

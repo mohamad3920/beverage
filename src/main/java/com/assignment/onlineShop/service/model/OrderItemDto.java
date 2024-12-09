@@ -13,4 +13,5 @@ public class OrderItemDto {
     private String position;
     @Positive
     private Double price;
+    private Integer quantity;
 }

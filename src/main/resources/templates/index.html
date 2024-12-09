@@ -4,27 +4,52 @@
   <title>Home</title>
 </head>
 <body>
+<a href="/cart">View Basket</a> <a href="/orders">  View Orders</a> <a href="/inventory">   Manage Inventory</a>
+
 <h1>Available Beverages</h1>
 <h2>Bottles</h2>
-<ul>
-  <li th:each="bottle : ${bottles}">
-    <span th:text="${bottle.name}">Bottle Name</span> -
-    <span th:text="${bottle.price}">Price</span>
-    <form th:action="@{/addBottle/{id}(id=${bottle.id})}" method="post">
-      <button type="submit">Add to Basket</button>
-    </form>
-  </li>
-</ul>
+<table>
+  <thead>
+  <tr>
+    <th>Bottle Name</th>
+    <th>Price</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="bottle : ${bottles}">
+    <td th:text="${bottle.name}"></td>
+    <td th:text="${bottle.price}"></td>
+    <td>
+      <form th:action="@{/addBottle/{id}(id=${bottle.id})}" method="post">
+        <button type="submit">Add to Basket</button>
+      </form>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
 <h2>Crates</h2>
-<ul>
-  <li th:each="crate : ${crates}">
-    <span th:text="${crate.name}">Crate Name</span> -
-    <span th:text="${crate.price}">Price</span>
-    <form th:action="@{/addCrate/{id}(id=${crate.id})}" method="post">
-      <button type="submit">Add to Basket</button>
-    </form>
-  </li>
-</ul>
-<a href="/basket">View Basket</a>
+<table>
+  <thead>
+  <tr>
+    <th>Crate Name</th>
+    <th>Price</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="crate : ${crates}">
+    <td th:text="${crate.name}"></td>
+    <td th:text="${crate.price}"></td>
+    <td>
+      <form th:action="@{/addCrate/{id}(id=${crate.id})}" method="post">
+        <button type="submit">Add to Basket</button>
+      </form>
+    </td>
+  </tr>
+  </tbody>
+</table>
+<a href="/cart">View Basket</a>
 </body>
 </html>

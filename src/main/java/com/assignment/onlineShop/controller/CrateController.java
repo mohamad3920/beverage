@@ -1,7 +1,7 @@
 package com.assignment.onlineShop.controller;
 
-import com.assignment.onlineShop.repository.entity.Crate;
 import com.assignment.onlineShop.service.CrateService;
+import com.assignment.onlineShop.service.model.CrateDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,7 +26,7 @@ public class CrateController {
 
     @GetMapping
     public String getAllCrates(Model model) {
-        model.addAttribute("crates", crateService.getAllCrates());
+        model.addAttribute("crates", crateService.getAll());
         return "crate-list";
     }
 
@@ -37,13 +37,13 @@ public class CrateController {
     }
 
     @PostMapping
-    public Crate createCrate(@RequestBody Crate crate) {
+    public CrateDto createCrate(@RequestBody CrateDto crate) {
         return crateService.saveCrate(crate);
     }
 
     @PutMapping
-    public Crate updateCrate(@RequestBody Crate crate) {
-        return crateService.updateCrate(crate);
+    public CrateDto updateCrate(@RequestBody CrateDto crate) {
+        return crateService.saveCrate(crate);
     }
 
     @DeleteMapping

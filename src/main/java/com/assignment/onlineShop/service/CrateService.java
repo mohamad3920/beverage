@@ -1,12 +1,10 @@
 package com.assignment.onlineShop.service;
 
 import com.assignment.onlineShop.repository.CrateRepository;
-import com.assignment.onlineShop.repository.entity.Crate;
 import com.assignment.onlineShop.service.mapper.CrateMapper;
 import com.assignment.onlineShop.service.model.CrateDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -19,21 +17,21 @@ public class CrateService {
         this.crateRepository = crateRepository;
     }
 
-    public List<Crate> getAllCrates() {
-        return crateRepository.findAll();
+    public List<CrateDto> getAll() {
+        var crates = crateRepository.findAll();
+        return CrateMapper.INSTANCE.toDto(crates);
     }
 
     public CrateDto getCrateById(Long id) {
-        Crate crate = crateRepository.findById(id).orElseThrow(() -> new RuntimeException("Entity not found"));
+        var crate = crateRepository
+                .findById(id)
+                .orElseThrow(() -> new RuntimeException("Crate not found"));
         return CrateMapper.INSTANCE.toDto(crate);
     }
 
-    public Crate saveCrate(Crate crate) {
-        return crateRepository.save(crate);
-    }
-
-    public Crate updateCrate(Crate crate) {
-        return crateRepository.save(crate);
+    public CrateDto saveCrate(CrateDto crateDto) {
+        var crate = crateRepository.save(CrateMapper.INSTANCE.toEntity(crateDto));
+        return CrateMapper.INSTANCE.toDto(crate);
     }
 
     public void deleteCrate(Long id) {

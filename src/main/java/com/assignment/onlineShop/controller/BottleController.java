@@ -1,6 +1,6 @@
 package com.assignment.onlineShop.controller;
 
-import com.assignment.onlineShop.repository.entity.Bottle;
+import com.assignment.onlineShop.service.model.BottleDto;
 import com.assignment.onlineShop.service.BottleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,12 +26,12 @@ public class BottleController {
 
     @GetMapping
     public String getBottles(Model model) {
-        model.addAttribute("bottles", bottleService.findAll());
+        model.addAttribute("bottles", bottleService.getAll());
         return "bottle-list";
     }
 
     @PostMapping
-    public Bottle createBottle(@RequestBody Bottle bottle) {
+    public BottleDto createBottle(@RequestBody BottleDto bottle) {
         return bottleService.save(bottle);
     }
 
@@ -42,7 +42,7 @@ public class BottleController {
     }
 
     @PutMapping
-    public Bottle updateBottle(@RequestBody Bottle bottle) {
+    public BottleDto updateBottle(@RequestBody BottleDto bottle) {
         return bottleService.save(bottle);
     }
 

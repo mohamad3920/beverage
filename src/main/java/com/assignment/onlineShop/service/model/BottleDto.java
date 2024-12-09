@@ -29,4 +29,6 @@ public class BottleDto {
     private String supplier;
     @Positive
     private Integer inStock;
+    @Positive
+    private Integer quantity;
 }

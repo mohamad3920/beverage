@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Inventory Management</title>
+</head>
+<body>
+<h1>Inventory Management</h1>
+
+<h2>Add a New Bottle</h2>
+<form th:action="@{/inventory/addBottle}" th:object="${bottle}" method="post">
+  <label>Name: <input type="text" th:field="*{name}" /></label><br>
+  <label>Picture URL: <input type="text" th:field="*{bottlePic}" /></label><br>
+  <label>Volume: <input type="number" step="0.1" th:field="*{volume}" /></label><br>
+  <label>Is Alcoholic: <input type="checkbox" th:field="*{isAlcoholic}" /></label><br>
+  <label>Volume Percent: <input type="number" step="0.1" th:field="*{volumePercent}" /></label><br>
+  <label>Price: <input type="number" step="0.01" th:field="*{price}" /></label><br>
+  <label>Supplier: <input type="text" th:field="*{supplier}" /></label><br>
+  <label>Stock: <input type="number" th:field="*{inStock}" /></label><br>
+  <button type="submit">Add Bottle</button>
+</form>
+
+<h2>Add a New Crate</h2>
+<form th:action="@{/inventory/addCrate}" th:object="${crate}" method="post">
+  <label>Name: <input type="text" th:field="*{name}" /></label><br>
+  <label>Picture URL: <input type="text" th:field="*{cratePic}" /></label><br>
+  <label>Number of Bottles: <input type="number" th:field="*{noOfBottles}" /></label><br>
+  <label>Price: <input type="number" step="0.01" th:field="*{price}" /></label><br>
+  <label>Stock: <input type="number" th:field="*{cratesInStock}" /></label><br>
+  <button type="submit">Add Crate</button>
+</form>
+
+<a href="/">Back to Home</a>
+</body>
+</html>

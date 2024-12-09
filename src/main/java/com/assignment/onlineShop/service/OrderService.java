@@ -16,8 +16,8 @@ public class OrderService {
         this.orderRepository = orderRepository;
     }
 
-    public ShopOrder save(ShopOrder shopOrder) {
-        return orderRepository.save(shopOrder);
+    public void save(ShopOrder shopOrder) {
+        orderRepository.save(shopOrder);
     }
 
     public ShopOrder findById(Long id) {
