@@ -1,14 +1,17 @@
 -- Create Users
-CREATE TABLE IF NOT EXISTS SHOP_USER
+CREATE TABLE IF NOT EXISTS WEB_USER
 (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(255) UNIQUE NOT NULL,
     password VARCHAR(255) NOT NULL,
-    birthdate DATE
+    full_name VARCHAR(255),
+    phone_number VARCHAR(255),
+    role VARCHAR(255)
     );
 
-INSERT INTO shop_user (id, username, password, birthdate)
-VALUES (1, 'admin', 'admin', '1990-01-01');
+INSERT INTO web_user (id, username, password, full_name, phone_number, role)
+VALUES (1, 'admin', 'admin','adminName', '0175', 'ROLE_ADMIN'),
+       (2, 'user', '1234','muller', '01751', 'ROLE_USER');
 --
 CREATE TABLE IF NOT EXISTS ADDRESS (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
@@ -17,21 +20,21 @@ CREATE TABLE IF NOT EXISTS ADDRESS (
     number VARCHAR(50),
     postal_code VARCHAR(20),
     user_id BIGINT,
-    FOREIGN KEY (user_id) REFERENCES SHOP_USER(id)
+    FOREIGN KEY (user_id) REFERENCES WEB_USER(id)
     );
 
 -- Create Addresses
 INSERT INTO address (id, city, street, number, postal_code, user_id)
 VALUES (1, 'CityA', 'Street1', '101', '11111', '1'),
-       (2, 'CityB', 'Street2', '102', '22222', '1'),
-       (3, 'CityC', 'Street3', '103', '33333', '1'),
-       (4, 'CityD', 'Street4', '104', '44444', '1');
+       (2, 'CityB', 'Street2', '102', '22222', '2'),
+       (3, 'CityC', 'Street3', '103', '33333', '2'),
+       (4, 'CityD', 'Street4', '104', '44444', '2');
 
 CREATE TABLE IF NOT EXISTS SHOP_ORDER (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     price DOUBLE NOT NULL,
     user_id BIGINT,
-    FOREIGN KEY (user_id) REFERENCES SHOP_USER(id)
+    FOREIGN KEY (user_id) REFERENCES WEB_USER(id)
     );
 
 -- Create Orders
