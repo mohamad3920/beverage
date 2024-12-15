@@ -10,8 +10,8 @@ CREATE TABLE IF NOT EXISTS WEB_USER
     );
 
 INSERT INTO web_user (id, username, password, full_name, phone_number, role)
-VALUES (1, 'admin', 'admin','adminName', '0175', 'ROLE_ADMIN'),
-       (2, 'user', '1234','muller', '01751', 'ROLE_USER');
+VALUES (1, 'admin', '$2a$10$lg5MhJ4lFaTKXIZ9vjgw6escuwQE9E1XMKH5adeE/cXN3Tx./MzpC','adminName', '0175', 'ROLE_ADMIN'),
+       (2, 'user', '$2a$10$ZtnId8WGT2dUSeX5wAjXWu.1/HmI1rwyoYa1USPKybyN6Ojq/.CF6','muller', '01751', 'ROLE_USER');
 --
 CREATE TABLE IF NOT EXISTS ADDRESS (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
