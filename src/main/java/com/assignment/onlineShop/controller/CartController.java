@@ -1,9 +1,11 @@
 package com.assignment.onlineShop.controller;
 
+import com.assignment.onlineShop.repository.entity.WebUser;
 import com.assignment.onlineShop.service.CartService;
 import com.assignment.onlineShop.service.OrderService;
 import com.assignment.onlineShop.service.model.OrderDto;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,10 +34,11 @@ public class CartController {
     }
 
     @PostMapping("/submitOrder")
-    public String submitOrder(Model model) {
+    public String submitOrder(Model model, @AuthenticationPrincipal WebUser user) {
         var items = cartService.getBasketItems();
         var totalPrice = cartService.getTotalPrice();
         var order = OrderDto.builder()
+                .userId(user.getId())
                 .orderItems(items)
                 .price(totalPrice)
                 .build();

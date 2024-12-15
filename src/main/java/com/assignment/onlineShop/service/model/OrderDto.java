@@ -12,6 +12,7 @@ import java.util.List;
 @Builder
 public class OrderDto {
     private Long id;
+    private Long userId;
     @Positive
     private Double price;
     private List<OrderItemDto> orderItems;

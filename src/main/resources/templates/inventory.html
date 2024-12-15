@@ -14,29 +14,28 @@
 <h1>Inventory Management</h1>
 
 <h2>Add a New Bottle</h2>
-<form th:action="@{/inventory/addBottle}" th:object="${bottle}" method="post">
-  <label>Name: <input type="text" th:field="*{name}" /></label><br>
-  <label>Picture URL: <input type="text" th:field="*{bottlePic}" /></label><br>
-  <label>Volume: <input type="number" step="0.1" th:field="*{volume}" /></label><br>
-  <label>Is Alcoholic: <input type="checkbox" th:field="*{isAlcoholic}" /></label><br>
-  <label>Volume Percent: <input type="number" step="0.1" th:field="*{volumePercent}" /></label><br>
-  <label>Price: <input type="number" step="0.01" th:field="*{price}" /></label><br>
-  <label>Supplier: <input type="text" th:field="*{supplier}" /></label><br>
-  <label>Stock: <input type="number" th:field="*{inStock}" /></label><br>
+<form th:action="@{/inventory/createBottle}" th:object="${bottle}" method="POST">
+  <input name="name" placeholder="name" type="text" th:field="*{name}"/><br>
+  <input name="pictureUrl" placeholder="Picture URL" type="text" th:field="*{bottlePic}"/><br>
+  <input name="volume" placeholder="Volume" type="number" step="0.1" th:field="*{volume}"/><br>
+  <input name="isAlcoholic" placeholder="Is Alcoholic" type="checkbox" th:field="*{isAlcoholic}"/><br>
+  <input name="volumePercent" placeholder="Volume Percent" type="number" step="0.1" th:field="*{volumePercent}"/><br>
+  <input name="price" placeholder="Price" type="number" step="0.01" th:field="*{price}"/><br>
+  <input name="supplier" placeholder="Supplier" type="text" th:field="*{supplier}"/><br>
+  <input name="stock" placeholder="Stock" type="number" th:field="*{inStock}"/><br>
   <button type="submit">Add Bottle</button>
 </form>
 
 <h2>Add a New Crate</h2>
-<form th:action="@{/inventory/addCrate}" th:object="${crate}" method="post">
-  <label>Name: <input type="text" th:field="*{name}" /></label><br>
-  <label>Picture URL: <input type="text" th:field="*{cratePic}" /></label><br>
-  <label>Number of Bottles: <input type="number" th:field="*{noOfBottles}" /></label><br>
-  <label>Price: <input type="number" step="0.01" th:field="*{price}" /></label><br>
-  <label>Stock: <input type="number" th:field="*{cratesInStock}" /></label><br>
+<form th:action="@{/inventory/createCrate}" th:object="${crate}" method="POST">
+  <input name="crateName" placeholder="name" type="text" th:field="*{name}"/><br>
+  <input name="cratePictureUrl" placeholder="Picture URL" type="text" th:field="*{cratePic}"/><br>
+  <input name="crateNoOfBottles" placeholder="Number of Bottles" type="number" th:field="*{noOfBottles}"/><br>
+  <input name="cratePrice" placeholder="Price" type="number" step="0.01" th:field="*{price}"/><br>
+  <input name="crateStock" placeholder="Stock" type="number" th:field="*{cratesInStock}"/><br>
   <button type="submit">Add Crate</button>
 </form>
 
-<a href="/">Back to Home</a>
 <div th:replace="~{fragments/footer :: footer}">...</div>
 
 </body>

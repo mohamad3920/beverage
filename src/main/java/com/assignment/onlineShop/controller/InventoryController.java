@@ -1,14 +1,14 @@
 package com.assignment.onlineShop.controller;
 
-import com.assignment.onlineShop.repository.entity.Bottle;
 import com.assignment.onlineShop.service.BottleService;
 import com.assignment.onlineShop.service.CrateService;
 import com.assignment.onlineShop.service.model.BottleDto;
 import com.assignment.onlineShop.service.model.CrateDto;
+import com.assignment.onlineShop.service.model.RegistrationForm;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.annotation.Validated;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -33,14 +33,15 @@ public class InventoryController {
         return "inventory";
     }
 
-    @PostMapping("/addBottle")
-    public String addBottle(@ModelAttribute BottleDto bottle) {
+
+    @PostMapping("/createBottle")
+    public String addBottle(@Valid BottleDto bottle) {
         bottleService.save(bottle);
         return "redirect:/inventory";
     }
 
-    @PostMapping("/addCrate")
-    public String addCrate(@ModelAttribute CrateDto crate) {
+    @PostMapping("/createCrate")
+    public String addCrate(@Valid CrateDto crate) {
         crateService.saveCrate(crate);
         return "redirect:/inventory";
     }
