@@ -1,5 +1,6 @@
 package com.assignment.onlineShop.security;
 
+import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -38,15 +39,14 @@ public class SecurityConfig implements WebMvcConfigurer {
         http.authorizeRequests((requests) -> requests
                         .requestMatchers(mvcMatcher.pattern("/users"), mvcMatcher.pattern("/h2-console/**")).hasRole("ADMIN")
                         .requestMatchers(mvcMatcher.pattern("/")).hasAnyRole("ADMIN", "USER")
-//                        .requestMatchers(mvcMatcher.pattern("/*")).permitAll()
+                        .requestMatchers(mvcMatcher.pattern("/*")).permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin((form) -> form
                         .loginPage("/login")
                         .permitAll()
                 )
-                .csrf().disable()
-                //               .csrf(request -> request.ignoringRequestMatchers(PathRequest.toH2Console()))
+                .csrf(request -> request.ignoringRequestMatchers(PathRequest.toH2Console()))
                 .headers(headers -> headers.frameOptions(option -> option.sameOrigin()))
                 .logout((logout) -> logout.permitAll().invalidateHttpSession(true).deleteCookies("JSESSIONID").logoutSuccessUrl("/"));
         return http.build();

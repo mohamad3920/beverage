@@ -1,10 +1,14 @@
 package com.assignment.onlineShop.service;
 
 import com.assignment.onlineShop.repository.OrderRepository;
-import com.assignment.onlineShop.repository.entity.ShopOrder;
+import com.assignment.onlineShop.repository.entity.WebUser;
+import com.assignment.onlineShop.service.mapper.OrderMapper;
+import com.assignment.onlineShop.service.model.OrderDto;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 
+import java.security.Principal;
 import java.util.List;
 
 @Service
@@ -16,16 +20,18 @@ public class OrderService {
         this.orderRepository = orderRepository;
     }
 
-    public void save(ShopOrder shopOrder) {
-        orderRepository.save(shopOrder);
+    public void save(OrderDto orderDto) {
+        orderRepository.save(OrderMapper.INSTANCE.toEntity(orderDto));
     }
 
-    public ShopOrder findById(Long id) {
-        return orderRepository.findById(id).orElse(null);
+    public OrderDto findById(Long id) {
+        var order = orderRepository.findById(id).orElse(null);
+        return OrderMapper.INSTANCE.toDto(order);
     }
 
-    public List<ShopOrder> findAll() {
-        return orderRepository.findAll();
+    public List<OrderDto> findAll(WebUser user) {
+        var orders = orderRepository.findByUserId(user.getId());
+        return OrderMapper.INSTANCE.toDtos(orders);
     }
 
     public void delete(Long id) {

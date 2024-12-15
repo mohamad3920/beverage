@@ -1,6 +1,8 @@
 package com.assignment.onlineShop.controller;
 
 import com.assignment.onlineShop.service.CartService;
+import com.assignment.onlineShop.service.OrderService;
+import com.assignment.onlineShop.service.model.OrderDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,10 +16,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class CartController {
 
     private final CartService cartService;
+    private final OrderService orderService;
 
     @Autowired
-    CartController(CartService cartService) {
+    CartController(CartService cartService, OrderService orderService) {
         this.cartService = cartService;
+        this.orderService = orderService;
     }
 
     @GetMapping
@@ -29,7 +33,14 @@ public class CartController {
 
     @PostMapping("/submitOrder")
     public String submitOrder(Model model) {
-        // Implement actual order submission logic here
+        var items = cartService.getBasketItems();
+        var totalPrice = cartService.getTotalPrice();
+        var order = OrderDto.builder()
+                .orderItems(items)
+                .price(totalPrice)
+                .build();
+
+        orderService.save(order);
         cartService.clearBasket();
         model.addAttribute("message", "Order submitted successfully!");
         return "orderConfirmation";
