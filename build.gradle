@@ -35,6 +35,8 @@ dependencies {
     annotationProcessor 'org.projectlombok:lombok-mapstruct-binding:0.2.0'
     implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6'
+    testImplementation group: 'org.springframework.security', name: 'spring-security-test', version: '6.4.0'
+
 }
 
 tasks.named('test') {

@@ -34,7 +34,6 @@ public class CartService {
                 .id(crate.getId())
                 .position(crate.getName())
                 .price(crate.getPrice())
-                .quantity(crate.getQuantity())
                 .build();
         cart.addItem(item);
     }
