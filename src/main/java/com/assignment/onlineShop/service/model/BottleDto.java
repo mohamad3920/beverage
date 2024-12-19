@@ -1,5 +1,6 @@
 package com.assignment.onlineShop.service.model;
 
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
@@ -17,22 +18,20 @@ import org.hibernate.validator.constraints.URL;
 @NoArgsConstructor
 public class BottleDto {
     private Long id;
-    @NotNull
-    @NotEmpty
+    @NotBlank(message = "Name is required.")
     private String name;
     @URL
     private String bottlePic;
-    @Positive
+    @Positive(message = "volume must be a positive number.")
     private Double volume;
     private Boolean isAlcoholic;
     private Double volumePercent;
-    @Positive
+    @Positive(message = "Price must be a positive number.")
     private Double price;
-    @NotNull
-    @NotEmpty
+    @NotBlank(message = "Supplier is required.")
     private String supplier;
-    @Positive
+    @Positive(message = "inStock must be a positive number.")
     private Integer inStock;
-    @Positive
+    @Positive(message = "quantity must be a positive number.")
     private Integer quantity;
 }
