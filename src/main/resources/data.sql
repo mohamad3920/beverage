@@ -6,6 +6,7 @@ CREATE TABLE IF NOT EXISTS WEB_USER
     password VARCHAR(255) NOT NULL,
     full_name VARCHAR(255),
     phone_number VARCHAR(255),
+    birthdate DATE,
     role VARCHAR(255)
     );
 

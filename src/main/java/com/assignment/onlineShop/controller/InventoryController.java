@@ -40,7 +40,9 @@ public class InventoryController {
             model.addAttribute("validationErrors", bindingResult.getAllErrors());
             return "inventory";
         }
-
+        if (bottle.getVolumePercent() > 0) {
+            bottle.setIsAlcoholic(true);
+        }
         bottleService.save(bottle);
         return "redirect:/inventory";
     }

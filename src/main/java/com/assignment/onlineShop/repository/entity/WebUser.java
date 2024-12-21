@@ -1,5 +1,6 @@
 package com.assignment.onlineShop.repository.entity;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
@@ -26,12 +27,13 @@ import org.springframework.security.core.userdetails.UserDetails;
 @Entity
 @Builder
 @AllArgsConstructor
-public class WebUser implements UserDetails {          // interface from Spring Security
+public class WebUser implements UserDetails {
 
     private final String username;
     private final String password;
     private final String fullName;
     private final String phoneNumber;
+    private final LocalDate birthday;
     private String role;
 
     @OneToMany(fetch = FetchType.EAGER)
@@ -45,11 +47,12 @@ public class WebUser implements UserDetails {          // interface from Spring 
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    public WebUser(String username, String password, String fullName, String phoneNumber, String role) {
+    public WebUser(String username, String password, String fullName, String phoneNumber, LocalDate birthday, String role) {
         this.username = username;
         this.password = password;
         this.fullName = fullName;
         this.phoneNumber = phoneNumber;
+        this.birthday = birthday;
         this.role = role;
     }
 
